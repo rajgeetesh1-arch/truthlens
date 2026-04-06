@@ -1,0 +1,88 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #F3EFE7;
+  --surface:   #E6DFD3;
+  --surface2:  #DDD5C7;
+  --border:    #CEC4B4;
+  --text:      #3A352F;
+  --muted:     #7A7267;
+  --accent:    #C97C5D;
+  --accent-h:  #B56B4C;
+  --true:      #8FAF9A;
+  --true-bg:   #EAF2EE;
+  --warn:      #D8B26E;
+  --warn-bg:   #FBF4E4;
+  --false:     #B36A5E;
+  --false-bg:  #F5ECEA;
+  --shadow:    0 2px 12px rgba(58,53,47,0.10);
+  --shadow-lg: 0 8px 32px rgba(58,53,47,0.14);
+  --radius:    14px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1, h2, h3, .serif {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Subtle paper texture via repeating gradient */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 28px,
+      rgba(58,53,47,0.018) 28px,
+      rgba(58,53,47,0.018) 29px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+#root { position: relative; z-index: 1; }
+
+button { cursor: pointer; font-family: 'Inter', sans-serif; }
+textarea, select, input { font-family: 'Inter', sans-serif; }
+
+textarea:focus, select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.fade-up { animation: fadeUp 0.45s ease both; }
+.fade-up-1 { animation: fadeUp 0.45s 0.07s ease both; }
+.fade-up-2 { animation: fadeUp 0.45s 0.14s ease both; }
+.fade-up-3 { animation: fadeUp 0.45s 0.21s ease both; }
+.fade-up-4 { animation: fadeUp 0.45s 0.28s ease both; }
+.fade-up-5 { animation: fadeUp 0.45s 0.35s ease both; }
