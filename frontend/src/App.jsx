@@ -724,7 +724,7 @@ if (mode === "video-url") data = await analyzeVideoUrl(vidUrl, vidCtx); // ← A
 
       {/* Footer */}
       <footer style={{ textAlign: "center", marginTop: 52, color: "var(--muted)", fontSize: "0.72rem" }}>
-        TruthLens uses Groq AI · Results are advisory, not definitive · Always verify with primary sources
+        TruthLens uses proprietary multi-stage verification algorithm · Results are advisory, not definitive · Always verify with primary sources
       </footer>
     </div>
   );
