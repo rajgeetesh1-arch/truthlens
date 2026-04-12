@@ -20,6 +20,7 @@ RUN npm install
 RUN pip3 install transformers torch huggingface_hub yt-dlp --break-system-packages
 
 # Expose port
-ENV PORT=3001
+ENV PORT=10000
+EXPOSE 10000
 
 CMD ["node", "server.js"]
