@@ -5,7 +5,7 @@ from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassific
 import os
 
 # ── Load model ────────────────────────────────────────
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "model")
+MODEL_PATH = "rajgeetesh1/truthverse-distilbert"
 
 try:
     tokenizer = DistilBertTokenizerFast.from_pretrained(MODEL_PATH)

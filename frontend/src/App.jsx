@@ -727,5 +727,5 @@ if (mode === "video-url") data = await analyzeVideoUrl(vidUrl, vidCtx); // ← A
         TruthLens uses proprietary multi-stage verification algorithm · Results are advisory, not definitive · Always verify with primary sources
       </footer>
     </div>
-  );
+  );    
 }
