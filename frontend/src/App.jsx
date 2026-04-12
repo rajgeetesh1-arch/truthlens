@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback } from "react";
+const BASE = import.meta.env.VITE_API_URL || "";
 
 // ── Constants ───────────────────────────────────────────────────────────────
 
@@ -38,7 +39,7 @@ const LANGUAGES = [
 // ── API helpers ─────────────────────────────────────────────────────────────
 
 async function analyzeText(text, lang) {
-  const res = await fetch("/api/analyze/text", {
+ const res = await fetch("https://truthlens-backend-qs8t.onrender.com/api/analyze/text", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ text, lang }),
@@ -52,7 +53,7 @@ async function analyzeImage(file, context) {
   const fd = new FormData();
   fd.append("image", file);
   fd.append("context", context);
-  const res = await fetch("/api/analyze/image", { method: "POST", body: fd });
+  const res = await fetch("https://truthlens-backend-qs8t.onrender.com/api/analyze/image", { method: "POST", body: fd });
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || "Analysis failed");
   return data;
@@ -65,13 +66,13 @@ async function analyzeVideo(file, context) {
   const fd = new FormData();
   fd.append("video", file);
   fd.append("context", context);
-  const res = await fetch("/api/analyze/video", { method: "POST", body: fd });
+ const res = await fetch("https://truthlens-backend-qs8t.onrender.com/api/analyze/video", { method: "POST", body: fd });
   const data = await res.json();
   if (!res.ok) throw new Error(data.error || "Analysis failed");
   return data;
 }
 async function analyzeVideoUrl(url, context) {
-  const res = await fetch("/api/analyze/video-url", {
+  const res = await fetch("https://truthlens-backend-qs8t.onrender.com/api/analyze/video-url", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ url, context }),
