@@ -16,7 +16,7 @@ const NEWS_API_KEY = process.env.NEWSAPI_KEY;
 // ── Helper: Run DistilBERT ML Model ───────────────────
 function runMLModel(text) {
   return new Promise((resolve) => {
-    const py = spawn("python", [
+    const py = spawn("python3", [
       path.join(__dirname, "predict.py"),
       text.slice(0, 512)
     ]);
