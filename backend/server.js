@@ -7,33 +7,26 @@ const axios = require("axios");
 const ffmpeg = require("fluent-ffmpeg");
 const FormData = require("form-data");
 require("dotenv").config();
-const { spawn } = require("child_process");
+
 const sharp = require("sharp");
 
 // ── NewsAPI Key ────────────────────────────────────────
 const NEWS_API_KEY = process.env.NEWSAPI_KEY;
 
-// ── Helper: Run DistilBERT ML Model ───────────────────
-function runMLModel(text) {
-  return new Promise((resolve) => {
-    const py = spawn("python3", [
-      path.join(__dirname, "predict.py"),
-      text.slice(0, 512)
-    ]);
 
-    let output = "";
-    py.stdout.on("data", (data) => { output += data.toString(); });
-    py.stderr.on("data", () => {}); // suppress loading bar
-    py.on("close", () => {
-      try {
-        const lines = output.trim().split("\n");
-        const jsonLine = lines[lines.length - 1];
-        resolve(JSON.parse(jsonLine));
-      } catch {
-        resolve({ ml_score: 50, ml_verdict: "UNVERIFIED", confidence: 0 });
-      }
-    });
-  });
+// ── Helper: Run DistilBERT ML Model (HuggingFace Spaces) ──────────────────
+async function runMLModel(text) {
+  try {
+    const response = await axios.post(
+      "https://rajgeetesh1-truthverse-api.hf.space/predict",
+      { text: text.slice(0, 512) },
+      { headers: { "Content-Type": "application/json" }, timeout: 30000 }
+    );
+    return response.data;
+  } catch (err) {
+    console.log("ML API error:", err.message);
+    return { ml_score: 50, ml_verdict: "UNVERIFIED", confidence: 0 };
+  }
 }
 
 // ── Helper: NewsAPI Cross-Verification ────────────────
