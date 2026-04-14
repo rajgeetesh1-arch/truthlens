@@ -6,6 +6,7 @@ const path = require("path");
 const axios = require("axios");
 const ffmpeg = require("fluent-ffmpeg");
 const FormData = require("form-data");
+const { spawn } = require("child_process");
 require("dotenv").config();
 
 const sharp = require("sharp");
